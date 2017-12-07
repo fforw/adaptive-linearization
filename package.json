@@ -1,11 +1,17 @@
 {
-  "name": "adaptive-linearization",
-  "version": "1.0.0",
-  "description": "Adaptive linearization of bezier curves",
-  "main": "index.js",
-  "author": "Sven Helmberger",
-  "license": "MIT",
-  "dependencies": {
-    "object-assign": "^4.1.1"
-  }
+    "name": "adaptive-linearization",
+    "version": "1.0.0",
+    "description": "Adaptive linearization of bezier curves",
+    "main": "index.js",
+    "author": "Sven Helmberger",
+    "license": "MIT",
+    "dependencies": {
+        "object-assign": "^4.1.1"
+    },
+    "devDependencies": {
+        "mocha": "^4.0.1"
+    },
+    "scripts": {
+        "test": "mocha -R spec test.js"
+    }
 }

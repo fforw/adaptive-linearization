@@ -1,15 +1,39 @@
-var AdaptiveLinearization = require("./index");
+const assert = require("assert");
+const AdaptiveLinearization = require("./index");
 
-var s = "";
+var calls;
 
-var lineConsumer = function(x1,y1,x2,y2){
-    s+=" L" + x1 + "," + y1+ "  " + x2 + "," + y2;
-};
+const DATA = {};
 
-const al = new AdaptiveLinearization(lineConsumer, {
-    threshold: 2
+function clear()
+{
+    calls = [];
+}
+
+function collect(x1,y1,x2,y2,data)
+{
+
+    calls.push({
+        x1: x1,
+        y1: y1,
+        x2: x2,
+        y2: y2,
+        data: data
+    });
+}
+
+describe("Adaptive Linearization", function () {
+
+    beforeEach(clear);
+
+    it("linearizes lines", function () {
+
+        const al = new AdaptiveLinearization(collect);
+
+        al.linearize(0,0,33,0,66,0,100,0, DATA);
+
+        console.log(calls);
+
+
+    })
 });
-
-al.linearize(0,50,33,0,66,100,100,50);
-
-console.log("PATH: ", s);
