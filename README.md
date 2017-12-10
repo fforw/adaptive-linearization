@@ -13,9 +13,7 @@ Basic Usage
 -----------
 
 ```js
-    const al = new AdaptiveLinearization(lineConsumer, {
-        threshold: 2
-    });
+    const al = new AdaptiveLinearization(lineConsumer);
     
     al.linearize(0,50,33,0,66,100,100,50, { id: 12 });
 
@@ -57,9 +55,7 @@ with the svgpath (NPM "svgpath") library.
     const SVGPath = require("svgpath");
     const path = SVGPath("M0,50 C33,0 66,100 100,50").unarc().abs();
 
-    const al = new AdaptiveLinearization(lineConsumer, {
-        threshold: 2
-    });
+    const al = new AdaptiveLinearization(lineConsumer);
 
     path.iterate(al.svgPathIterator);
     
@@ -94,6 +90,47 @@ First you can get rid of all transform attributes manually by editing the SVG or
 
 You can also load the complete SVG document in either a browser or with something like [jsdom](https://github.com/tmpvar/jsdom) and
 then apply all the transforms around each path with svgpath's `transform` method.
+
+### Options
+
+```js
+const options = {
+    
+    /**
+     * Approximation scale: Higher is better quality
+     */
+    approximationScale: 1,
+    
+    /**
+     * Limit to disregard the curve distance at
+     */
+    curve_distance_epsilon: 1e-30,
+    
+    /**
+     * Limit to disregard colinearity at
+     */
+    curveColinearityEpsilon: 1e-30,
+    
+    /**
+     * Limit disregard angle tolerance
+     */
+    curveAngleToleranceEpsilon:  0.01,
+
+    /**
+     * Angle tolerance, higher is better quality
+     */
+    angleTolerance: 0.4,
+    /**
+     * Hard recursion subdivision limit
+     */
+    recursionLimit: 32,
+
+    /**
+     * Limit for curve cusps: 0 = off (range: 0 to pi)
+     */
+    cuspLimit: 0
+};
+```
 
 ## Links  
  * [svgpath on github](https://github.com/fontello/svgpath)

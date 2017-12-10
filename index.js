@@ -109,15 +109,45 @@ function svgPathIterator(segment, index, curX, curY)
 }
 
 var DEFAULT_OPTS = {
+    /**
+     * Approximation scale: Higher is better quality
+     */
     approximationScale: 1,
+    /**
+     * Limit to disregard the curve distance at
+     */
     curve_distance_epsilon: 1e-30,
+    /**
+     * Limit to disregard colinearity at
+     */
     curveColinearityEpsilon: 1e-30,
+    /**
+     * Limit disregard angle tolerance
+     */
     curveAngleToleranceEpsilon:  0.01,
+
+    /**
+     * Angle tolerance, higher is better quality
+     */
     angleTolerance: 0.4,
+    /**
+     * Hard recursion subdivision limit
+     */
     recursionLimit: 32,
+
+    /**
+     * Limit for curve cusps: 0 = off (range: 0 to pi)
+     */
     cuspLimit: 0
 };
 
+/**
+ * Creates a new AdaptiveLinearization instance
+ *
+ * @param consumer      {function} line consumer function
+ * @param [opts]        options
+ * @constructor
+ */
 function AdaptiveLinearization(consumer, opts)
 {
     if (typeof consumer !== "function")
@@ -280,7 +310,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(cuspLimit !== 0.0)
                 {
-                    if(da1 > cuspLimit)
+                    if(da1 > PI - cuspLimit)
                     {
                         consumer(x1,y1,x3,y3, data);
                         return;
@@ -313,7 +343,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(cuspLimit !== 0.0)
                 {
-                    if(da1 > cuspLimit)
+                    if(da1 > PI - cuspLimit)
                     {
                         consumer(x1,y1,x2,y2, data);
                         return;
@@ -352,13 +382,13 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(cuspLimit !== 0.0)
                 {
-                    if(da1 > cuspLimit)
+                    if(da1 > PI - cuspLimit)
                     {
                         consumer(x1,y1,x2,y2, data);
                         return;
                     }
 
-                    if(da2 > cuspLimit)
+                    if(da2 > PI - cuspLimit)
                     {
                         consumer(x1,y1,x3,y3, data);
                         return;
