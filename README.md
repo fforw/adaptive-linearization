@@ -50,7 +50,7 @@ Usage with svgpath
 ------------------
 
 AdaptiveLinearization has a second method `svgPathIterator` that is a convenient way to linearize complete SVG paths 
-with the "svgpath" library.
+with the svgpath (NPM "svgpath") library.
 
 
 ```js
@@ -94,5 +94,7 @@ First you can get rid of all transform attributes manually by editing the SVG or
 
 You can also load the complete SVG document in either a browser or with something like [jsdom](https://github.com/tmpvar/jsdom) and
 then apply all the transforms around each path with svgpath's `transform` method.
-  
-Based on [Antigrain:Adaptive Subdivision of Bezier Curves](http://antigrain.com/research/adaptive_bezier/)
+
+## Links  
+ * [svgpath on github](https://github.com/fontello/svgpath)
+ * Implementation based on [Antigrain:Adaptive Subdivision of Bezier Curves](http://antigrain.com/research/adaptive_bezier/)
