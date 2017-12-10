@@ -19,7 +19,7 @@ var TAU = PI*2;
 function svgPathIterator(segment, index, curX, curY)
 {
     var command = segment[0];
-    var drawLine = al.consumer;
+    var drawLine = this.consumer;
 
     var i, x, y, x2, y2, x3, y3, x4, y4, short = false;
 
