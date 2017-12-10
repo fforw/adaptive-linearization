@@ -4,7 +4,7 @@ Converts a bezier curve into a series of lines based on an acceptable error valu
 
 There are many areas where this can be useful. From 2D games to the animation of SVG graphics.
 
-##Playground
+## Playground
 
 [Playground on gh-pages](https://fforw.github.io/al-playground/)
 
