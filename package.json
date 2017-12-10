@@ -1,6 +1,6 @@
 {
     "name": "adaptive-linearization",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Adaptive linearization of bezier curves",
     "main": "index.js",
     "author": "Sven Helmberger",
