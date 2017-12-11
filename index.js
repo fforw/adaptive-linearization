@@ -260,6 +260,8 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
                 {
                     // Simple collinear case, 1---2---3---4
                     // We can leave just two endpoints
+
+                    //console.log("consumer(x1,y1,x4,y4, data);");
                     consumer(x1,y1,x4,y4, data);
                     return;
                 }
@@ -275,6 +277,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
             {
                 if(d2 < distanceToleranceSquared)
                 {
+                    //console.log("consumer(x1,y1,x2,y2, data);");
                     consumer(x1,y1,x2,y2, data);
                     return;
                 }
@@ -283,6 +286,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
             {
                 if(d3 < distanceToleranceSquared)
                 {
+                    //console.log("consumer(x1,y1, x3, y3, data);");
                     consumer(x1,y1, x3, y3, data);
                     return;
                 }
@@ -296,6 +300,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
             {
                 if(angleTolerance < curveAngleToleranceEpsilon)
                 {
+                    //console.log("consumer(x1,y1,x23,y23, data); (1)");
                     consumer(x1,y1,x23,y23, data);
                     return;
                 }
@@ -307,7 +312,9 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(da1 < angleTolerance)
                 {
+                    //console.log("consumer(x1,y1,x2,y2, data);");
                     consumer(x1,y1,x2,y2, data);
+                    //console.log("consumer(x2,y2,x3,y3, data);");
                     consumer(x2,y2,x3,y3, data);
                     return;
                 }
@@ -316,6 +323,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
                 {
                     if(da1 > PI - cuspLimit)
                     {
+                        //console.log("consumer(x1,y1,x3,y3, data);");
                         consumer(x1,y1,x3,y3, data);
                         return;
                     }
@@ -330,6 +338,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
             {
                 if(angleTolerance < curveAngleToleranceEpsilon)
                 {
+                    //console.log("consumer(x1,y1,x23,y23, data); (2)");
                     consumer(x1,y1,x23,y23, data);
                     return;
                 }
@@ -341,7 +350,9 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(da1 < angleTolerance)
                 {
+                    //console.log("consumer(x1,y1,x2,y2, data);");
                     consumer(x1,y1,x2,y2, data);
+                    //console.log("consumer(x2,y2,x3,y3, data);");
                     consumer(x2,y2,x3,y3, data);
                     return;
                 }
@@ -350,6 +361,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
                 {
                     if(da1 > PI - cuspLimit)
                     {
+                        //console.log("consumer(x1,y1,x2,y2, data);");
                         consumer(x1,y1,x2,y2, data);
                         return;
                     }
@@ -367,6 +379,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
                 //----------------------
                 if(angleTolerance < curveAngleToleranceEpsilon)
                 {
+                    //console.log("consumer(x1,y1,x23,y23, data); (3)");
                     consumer(x1,y1,x23,y23, data);
                     return;
                 }
@@ -381,6 +394,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(da1 + da2 < angleTolerance)
                 {
+                    //console.log("consumer(x1,y1,x23,y23, data); (4)");
                     consumer(x1,y1,x23,y23, data);
                     return;
                 }
@@ -389,12 +403,14 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
                 {
                     if(da1 > PI - cuspLimit)
                     {
+                        //console.log("consumer(x1,y1,x2,y2, data);");
                         consumer(x1,y1,x2,y2, data);
                         return;
                     }
 
                     if(da2 > PI - cuspLimit)
                     {
+                        //console.log("consumer(x1,y1,x3,y3, data);");
                         consumer(x1,y1,x3,y3, data);
                         return;
                     }
@@ -403,10 +419,11 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
             break;
     }
 
-    var nextLevel = level ? level + 1 : 1;
+    var nextLevel = level + 1;
 
     if (nextLevel >= opts.recursionLimit)
     {
+        //console.log("consumer(x1, y1, x4, y4, data);");
         consumer(x1, y1, x4, y4, data);
         return;
     }
