@@ -29,7 +29,10 @@ function svgPathIterator(segment, index, curX, curY)
     switch (command)
     {
         case "M":
-            for (i = 1; i < segment.length; i += 2)
+            curX = segment[1];
+            curY = segment[2];
+
+            for (i = 3; i < segment.length; i += 2)
             {
                 x = segment[i];
                 y = segment[i + 1];
