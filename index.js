@@ -235,7 +235,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
     switch(
     (d2 > curveColinearityEpsilon ? 2 : 0) +
-    (d3 > curveAngleToleranceEpsilon? 1 : 0)
+    (d3 > curveColinearityEpsilon? 1 : 0)
         )
     {
         case 0:
@@ -307,6 +307,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(da1 < angleTolerance)
                 {
+                    consumer(x1,y1,x2,y2, data);
                     consumer(x2,y2,x3,y3, data);
                     return;
                 }
@@ -340,6 +341,7 @@ function linearizeRecursive(al, x1, y1, x2, y2, x3, y3, x4, y4, data, level)
 
                 if(da1 < angleTolerance)
                 {
+                    consumer(x1,y1,x2,y2, data);
                     consumer(x2,y2,x3,y3, data);
                     return;
                 }
