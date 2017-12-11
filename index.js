@@ -166,19 +166,19 @@ function AdaptiveLinearization(consumer, opts)
     }
 
     var al = this;
+    
+    this.opts = opts;
+    this.svgPathIterator = svgPathIterator.bind(this);
+    this.prevX = false;
+    this.prevY = false;
 
     this.consumer = function(x1,y1,x2,y2, data)
     {
+        consumer(x1,y1,x2,y2, data);
+
         al.prevX = x2;
         al.prevY = y2;
-
-        consumer(x1,y1,x2,y2, data);
     };
-
-    this.opts = opts;
-    this.svgPathIterator  = svgPathIterator.bind(this);
-    this.prevX = false;
-    this.prevY = false;
 
     //console.log("OPTS", opts);
 }
