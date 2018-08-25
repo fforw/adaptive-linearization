@@ -30,7 +30,7 @@ describe("Adaptive Linearization", function () {
 
         const al = new AdaptiveLinearization(collect);
 
-        al.linearize(0,0,33,0,66,0,100,0, DATA);
+        al.linearize(100,100,200,100,100,100,100,100, DATA);
 
         console.log(calls);
 
